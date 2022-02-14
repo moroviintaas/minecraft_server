@@ -1,0 +1,3 @@
+*.gz
+server_data/*
+*.bak
