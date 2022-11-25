@@ -1,4 +1,4 @@
-FROM ubuntu:focal
+FROM ubuntu:jammy
 ARG DEBIAN_FRONTEND=noninteractive
 RUN apt update
 
@@ -12,7 +12,9 @@ RUN useradd -s /bin/bash -m mc_server && usermod -aG sudo mc_server
 
 RUN  echo "mc_server ALL=(ALL) NOPASSWD:ALL" >> /etc/sudoers
 
-RUN wget -O /home/mc_server/minecraft_server.jar https://launcher.mojang.com/v1/objects/125e5adf40c659fd3bce3e66e67a16bb49ecc1b9/server.jar
+RUN wget -O /home/mc_server/minecraft_server.jar https://piston-data.mojang.com/v1/objects/f69c284232d7c7580bd89a5a4931c3581eae1378/server.jar
+ # 1.19.2 https://piston-data.mojang.com/v1/objects/f69c284232d7c7580bd89a5a4931c3581eae1378/server.jar
+ # 1.18.2 https://launcher.mojang.com/v1/objects/125e5adf40c659fd3bce3e66e67a16bb49ecc1b9/server.jar
 EXPOSE 25565
 
 
