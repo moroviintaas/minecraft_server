@@ -1,0 +1,9 @@
+version: "3.8"
+services:
+  minecraft:
+    build: .
+    ports:
+      - 25565:25565
+    volumes:
+      - ./server_data:/home/mc_server/server_data:z
+    
