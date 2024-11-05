@@ -1,16 +1,22 @@
 FROM debian:bookworm
-LABEL server_version=1.20.2
+LABEL server_version=1.21.3
 ARG DEBIAN_FRONTEND=noninteractive
 RUN apt-get update
 
-RUN apt-get install -y  vim wget  iproute2 sudo openjdk-17-jdk-headless
+RUN apt-get install -y  vim wget  iproute2 curl sudo
+
+RUN mkdir /java && \
+    curl -L https://download.java.net/java/GA/jdk23.0.1/c28985cbf10d4e648e4004050f8781aa/11/GPL/openjdk-23.0.1_linux-x64_bin.tar.gz | tar -xz -C /java
+    
 
 
-RUN useradd -s /bin/bash -m mc_server && usermod -aG sudo mc_server
+RUN useradd -s /bin/bash -m mc_server && usermod -aG sudo mc_server && \
+    echo export PATH="$PATH:/java/jdk-23.0.1/bin"  >> /home/mc_server/.profile &&\
+    echo export 'JAVA_HOME=/java/jdk-23.0.1/' >> /home/mc_server/.profile 
 
 RUN  echo "mc_server ALL=(ALL) NOPASSWD:ALL" >> /etc/sudoers
 
-RUN wget -O /home/mc_server/minecraft_server.jar https://piston-data.mojang.com/v1/objects/5b868151bd02b41319f54c8d4061b8cae84e665c/server.jar
+RUN wget -O /home/mc_server/minecraft_server.jar https://piston-data.mojang.com/v1/objects/45810d238246d90e811d896f87b14695b7fb6839/server.jar
 
 
 
