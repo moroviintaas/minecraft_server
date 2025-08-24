@@ -1,5 +1,5 @@
 FROM debian:bookworm
-LABEL server_version=1.21.3
+LABEL server_version=1.21.5
 ARG DEBIAN_FRONTEND=noninteractive
 RUN apt-get update
 
@@ -16,7 +16,7 @@ RUN useradd -s /bin/bash -m mc_server && usermod -aG sudo mc_server && \
 
 RUN  echo "mc_server ALL=(ALL) NOPASSWD:ALL" >> /etc/sudoers
 
-RUN wget -O /home/mc_server/minecraft_server.jar https://piston-data.mojang.com/v1/objects/45810d238246d90e811d896f87b14695b7fb6839/server.jar
+RUN wget -O /home/mc_server/minecraft_server.jar https://piston-data.mojang.com/v1/objects/e6ec2f64e6080b9b5d9b471b291c33cc7f509733/server.jar
 
 
 
