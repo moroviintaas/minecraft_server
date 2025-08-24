@@ -1,5 +1,5 @@
 FROM debian:bookworm
-LABEL server_version=1.21.5
+LABEL server_version=1.21.8
 ARG DEBIAN_FRONTEND=noninteractive
 RUN apt-get update
 
@@ -11,12 +11,12 @@ RUN mkdir /java && \
 
 
 RUN useradd -s /bin/bash -m mc_server && usermod -aG sudo mc_server && \
-    echo export PATH="$PATH:/java/jdk-23.0.1/bin"  >> /home/mc_server/.profile &&\
+    echo export PATH="$PATH:/java/jdk-23.0.1/bin"  >> /home/mc_server/.profile && \
     echo export 'JAVA_HOME=/java/jdk-23.0.1/' >> /home/mc_server/.profile 
 
 RUN  echo "mc_server ALL=(ALL) NOPASSWD:ALL" >> /etc/sudoers
 
-RUN wget -O /home/mc_server/minecraft_server.jar https://piston-data.mojang.com/v1/objects/e6ec2f64e6080b9b5d9b471b291c33cc7f509733/server.jar
+RUN wget -O /home/mc_server/minecraft_server.jar https://piston-data.mojang.com/v1/objects/6bce4ef400e4efaa63a13d5e6f6b500be969ef81/server.jar
 
 
 
